@@ -1,16 +1,5 @@
 # I wanna host the site and change the domain
 
-### NOTE:
-Alexy from work showed me his website. He basically has a home brewed front end js framework that uses ``${template_literals}`` to make stringified html all with vanilla js, ends up going: 
-```js
-document.body.innerHTML = '<div id="view">' + header + content + footer + '</div>'
-```
-I really like that idea. Or something similar.
-Alternative(traditional): serve more html (means more requests to static resource for html)
-if I serve a js file that can manipulate strings of html then no get requests ðŸ˜Ž
-
-- still create&host a server, but that will be just for saving data
-
 ### services that I will need:
 - DOMAIN MANAGEMENT:
   - DNS manager = `Cloudflare`
@@ -22,20 +11,19 @@ if I serve a js file that can manipulate strings of html then no get requests ðŸ
     - uses fastly cdn which is what changelog uses: advertising works ay?
 
 - SERVER HOSTING:
-  - `NGinX`
-  - `Site Host`
-  - `AWS`
+  - `digital ocean droplet:` [love you brad](https://www.youtube.com/watch?v=RE2PLyFqCzE)\
+    - have set it up, have tried to set it up as to answer requests at api.joevanbio.icu but only time will tell if that has worked.
+    - I'll write a small expresss server that listens for a request and sends something in return
 
 ### Progression idea
 - static html
-- server rendered template (ejs)
-- database (?)
+- host express server & pg/mysql database: save basic user session data
+- home brew, vanilla js, view engine [alexey's site](https://nomand.co/)
 
 https://developer.github.com/v3/repos/contents/
 
 ### stretch
 - use some C# why doncha
-
 
 I have bought a domain for just over a dollar a year: `joevanbio.icu` No idea what Im doing by the way
 
