@@ -14,6 +14,7 @@
   - `digital ocean droplet:` [love you brad](https://www.youtube.com/watch?v=RE2PLyFqCzE)\
     - have set it up, have tried to set it up as to answer requests at api.joevanbio.icu but only time will tell if that has worked.
     - I'll write a small expresss server that listens for a request and sends something in return
+    - it did not work but that is fine can get at its DO IP so if I can just turn that into api.joevanbio.icu then we are rolling!
 
 ### Progression idea
 - static html
