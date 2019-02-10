@@ -1,4 +1,15 @@
-// how did alexey get his seperate script files to talk to one another? Did he have to do that?
+// anything I define in any script file becomes a globally available thing ay??
+
+document.getElementById('header').addEventListener('click', () => {
+  const images = [
+    'sxc-joe.png',
+    'joe-and-steve-tandem.jpg'
+  ]
+  const banner = document.getElementById('banner-img')
+  const currentIdx = images.indexOf(banner.src.split('images/')[1])
+  const nextIdx = currentIdx + 1 < images.length ? currentIdx + 1 : 0
+  banner.src = 'images/' + images[nextIdx]
+})
 
 function render () {
   // window.sessionStorage.clear()
@@ -15,21 +26,21 @@ function getView() {
 
 function renderHeader(v) {
   return `
-  <div id="header" style="width:100%;height:100px;background-color:#d7c176;">
-  hi Im header
-  </div>`
+  <div id="header">
+  </div>
+  `
 }
 function renderMain(v) {
   return `
-  <div id="main" style="width:100%;height:500px;background-color:#f6da94;">
-  hi Im main view is ${v} ${button}
-  </div>`
+  <div id="main">
+  </div>
+  `
 }
 function renderFooter(v) {
   return `
-  <div id="footer" style="width:100%;height:100px;background-color:#d7c176;">
-    hi Im footer
-  </div>`
+  <div id="footer">
+  </div>
+  `
 }
 
 var button = `<button onclick="changeView('next')">click me!</button>`

@@ -13,3 +13,50 @@ body {
   min-height: 100%;
   top: 0px;
 }
+
+#header {
+  display: flex;
+  width: 100%;
+}
+
+#header:hover {
+  cursor: pointer;
+}
+
+#banner-img {
+  max-height: 600px;
+  width: auto;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#main {
+  margin-top: 75px;
+  text-align: center;
+  font-size: 3rem;
+}
+
+
+i[class^=fa] {
+  border-radius: 3px;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+}
+
+i[class^=fa]:hover {
+  cursor: pointer;
+  border: 1px solid black
+}
+
+.fa-envelope-square {
+  color: #8286c5;
+}
+
+.fa-twitter-square {
+  color: #1B95E0;
+}
+
+
+.fa-linkedin {
+  color: #1B95E0;
+}
