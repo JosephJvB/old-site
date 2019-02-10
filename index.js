@@ -4,6 +4,7 @@ function render () {
   // window.sessionStorage.clear()
   console.log('____RENDER CALL____')
   const v = getView()
+  console.log('render got view')
   const HTML = renderHeader(v) + renderMain(v) + renderFooter(v)
   setTimeout(() => document.body.innerHTML = HTML, 5000)
 }
@@ -14,18 +15,21 @@ function getView() {
 }
 
 function renderHeader(v) {
+  console.log('renderHeader')
   return `
   <div id="header" style="width:100%;height:100px;background-color:#d7c176;">
-    hi Im header
+  hi Im header
   </div>`
 }
 function renderMain(v) {
+  console.log('renderMain')
   return `
   <div id="main" style="width:100%;height:500px;background-color:#f6da94;">
-    hi Im main view is ${v} ${button}
+  hi Im main view is ${v} ${button}
   </div>`
 }
 function renderFooter(v) {
+  console.log('renderFooter')
   return `
   <div id="footer" style="width:100%;height:100px;background-color:#d7c176;">
     hi Im footer
