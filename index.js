@@ -1,11 +1,12 @@
 // how did alexey get his seperate script files to talk to one another? Did he have to do that?
+// edit comment to hope that when I push to master next time, the setTimeout is gone 😡
 
 function render () {
   // window.sessionStorage.clear()
   console.log('____RENDER CALL____')
   const v = getView()
   const HTML = renderHeader(v) + renderMain(v) + renderFooter(v)
-  document.body.innerHTML = HTML
+  document.body.innerHTML = HTML // change in source please
 }
 
 function getView() {
