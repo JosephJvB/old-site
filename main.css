@@ -1,11 +1,18 @@
+@font-face {
+  font-family: white-outline;
+  src: url('fonts/White\ Outlines.ttf')
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body {
-  /* background-color: #6c757d; */
-  font-family: Droid Sans Mono !important;
+  background-color: rgb(47, 49, 54);
+  /* font-family: Droid Sans Mono !important; */
+  /* font-family: white-outline; */
   width: 100%;
 }
 body {
@@ -14,20 +21,23 @@ body {
   top: 0px;
 }
 
-#header {
-  display: flex;
-  width: 100%;
-}
-
-#header:hover {
-  cursor: pointer;
-}
-
 #banner-img {
   max-height: 600px;
   width: auto;
-  display: inline-block;
   margin: 0 auto;
+  border: rgba(255, 255, 255, 0.493) solid 3px;
+  border-top: none;
+}
+
+#img-wrapper {
+  display: flex;
+  background-color:rgb(172, 134, 39);
+  width: fit-content;
+  max-width: -moz-fit-content;
+  margin: 0 auto;
+  padding: 0 1rem 1rem 1rem;
+  border: solid black 3px;
+  border-top: none;
 }
 
 #main {
@@ -36,8 +46,12 @@ body {
   font-size: 3rem;
 }
 
+#main > h1 {
+  font-family: white-outline;
+  cursor: pointer;
+}
 
-i[class^=fa] {
+/* i[class^=fa] {
   border-radius: 3px;
   padding: 0.5rem;
   border: 1px solid transparent;
@@ -56,7 +70,6 @@ i[class^=fa]:hover {
   color: #1B95E0;
 }
 
-
 .fa-linkedin {
   color: #1B95E0;
-}
+} */

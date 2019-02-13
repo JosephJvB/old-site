@@ -1,51 +1,28 @@
-// anything I define in any script file becomes a globally available thing ay??
+// neon sign blinker
 
-document.getElementById('header').addEventListener('click', () => {
-  const images = [
-    'sxc-joe.png',
-    'joe-and-steve-tandem.jpg'
-  ]
-  const banner = document.getElementById('banner-img')
-  const currentIdx = images.indexOf(banner.src.split('images/')[1])
-  const nextIdx = currentIdx + 1 < images.length ? currentIdx + 1 : 0
-  banner.src = 'images/' + images[nextIdx]
+const TXT = document.querySelector('div[id=main]>h1')
+
+TXT.addEventListener('click', () => {
+  // why does this.TICK exist, blinker.TICK does not work, I thought if I was inside a function, this binds to that function ?
+  if(this.TICK) {
+    killIntervals()
+    TXT.style.color = 'black'
+  } else {
+    blinker()
+  }
 })
 
-function render () {
-  // window.sessionStorage.clear()
-  console.log('____RENDER CALL____')
-  const v = getView()
-  const HTML = renderHeader(v) + renderMain(v) + renderFooter(v)
-  document.body.innerHTML = HTML
+function blinker() {
+  let i = 0
+  TXT.style.color = '#f442bc'
+  this.TICK = setInterval(() => {
+    TXT.style.color = i % 2 ? '#f442bc' : '#ba87aa'
+    i++
+  }, 1000)
 }
 
-function getView() {
-  const view = window.sessionStorage.getItem('view')
-  return view || 'home'
-}
-
-function renderHeader(v) {
-  return `
-  <div id="header">
-  </div>
-  `
-}
-function renderMain(v) {
-  return `
-  <div id="main">
-  </div>
-  `
-}
-function renderFooter(v) {
-  return `
-  <div id="footer">
-  </div>
-  `
-}
-
-var button = `<button onclick="changeView('next')">click me!</button>`
-
-function changeView(s) {
-  window.sessionStorage.setItem('view', s)
-  render()
+function killIntervals () {
+  // kill blinker
+  clearInterval(this.TICK)
+  this.TICK = 0
 }

@@ -25,11 +25,13 @@
   - to fill in time before the cold embrace of death?
 
 ### CONTENT:
+- cheesy neon theme, go as garish as you can my man
 - start with basic personal content: link my accounts together
   - email
   - twitter
   - github
   - linkedin
+> dev timeline slideshow: big bang->dev academy->Minded->JBA(current)
 - journal pages using github api [here](https://developer.github.com/v3/repos/contents/)
   - will have to do work to parse journals markdown
 - Lennie made a good point that including photos would be good. (also include small videos!)

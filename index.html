@@ -12,23 +12,32 @@
 <body>
   <div id="content" class="container">
     <div id="header" class="row">
-      <img id="banner-img" src="images/sxc-joe.png" alt="paint me like one of your french joe's">
+      <div id="img-wrapper">
+        <img id="banner-img" src="images/sxc-joe.png" alt="paint me like one of your french joe's">
+      </div>
     </div>
     <div id="main" class="row">
       <h1>Joe van Bo</h1>
-      <div class="icons">
+      <!-- need to display these on some kinda background -->
+      <!-- <div class="icons">
         <i class="fas fa-envelope-square"></i>
         <i class="fab fa-github"></i>
         <i class="fab fa-twitter-square"></i>
         <i class="fab fa-linkedin"></i>
-      </div>
+      </div> -->
     </div>
     <div id="footer" class="row">
     </div>
   </div>
   <script type="text/javascript" src="index.js"></script>
+  <!-- LOAD THINGS HERE -->
+  <script>
+    blinker()
+  </script>
+  <!-- UNLOAD THINGS HEREß -->
   <script>
    window.onbeforeunload = function(e) {
+    killIntervals()
     console.log('bye!')
     //const req = new XMLHttpRequest()
     //req.open('get', 'http://localhost:3000')
