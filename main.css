@@ -41,7 +41,7 @@ body {
 }
 
 #main {
-  margin-top: 75px;
+  margin-top: 20px;
   text-align: center;
   font-size: 3rem;
 }
@@ -49,6 +49,7 @@ body {
 #main > h1 {
   font-family: white-outline;
   cursor: pointer;
+  color: rgb(59, 61, 66);
 }
 
 /* i[class^=fa] {

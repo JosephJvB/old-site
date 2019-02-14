@@ -1,6 +1,10 @@
 // neon sign interval functions
 // function name = name
 // function interval = name + 'er'
+
+// todo: random letter flicker effect
+// set delay and colours as constants here
+
 const TXT = document.querySelector('div[id=main]>h1');
 
 let tickers = []
@@ -20,7 +24,7 @@ function blink () {
     let i = 0
     TXT.style.color = '#f442bc'
     window.blinker = setInterval(() => {
-      TXT.style.color = i % 2 ? '#f442bc' : '#ba87aa'
+      TXT.style.color = i % 2 ? '#f442bc' : 'rgb(59, 61, 66)'
       i++
     }, 900)
     tickers.push('blink')
@@ -37,7 +41,7 @@ function wave () {
       window.waver = 0
       TXT.innerHTML = 'Joe van Bo'
       setTimeout(() => TXT.style.color = 'goldenrod', 600)
-      setTimeout(() => TXT.style.color = 'black', 1800)
+      setTimeout(() => TXT.style.color = 'rgb(59, 61, 66)', 1800)
       setTimeout(blink, 2400)
       return
     }
