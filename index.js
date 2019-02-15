@@ -3,12 +3,17 @@
 // function interval = name + 'er'
 
 const TXT = document.querySelector('div[id=main]>h1');
+const RED = '#d40000'
+const ORANGE = '#d46600'
 const YELLOW = 'goldenrod'
-const PINK = '#f442bc'
+const GREEN = '#32d400'
 const BLUE = '#3CF6F6'
+const PURPLE = '#6d00d4'
+const PINK = '#f442bc'
+const WHITE = 'white'
 const OFF = 'rgb(59, 61, 66)'
 const DELAY = 600
-const COLS = [YELLOW, PINK, BLUE]
+const COLS = [RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK, WHITE]
 
 let tickers = []
 
@@ -83,6 +88,33 @@ function chunk (COL = YELLOW) {
   }, DELAY)
 }
 
+function rainbow () {
+  const letters = TXT.innerHTML
+  tickers.push('rainbower')
+  let i = 0
+  window.rainbower = setInterval(() => {
+    if(i === 19) {
+      endSequence('rainbower')
+      return
+    }
+    let str = ''
+    let spaces = 0
+    for(let j = 0; j < letters.length; j++) {
+      if(letters[j] === ' ') {
+        str+= ' '
+        spaces++
+      } else {
+        const y = j + i < letters.length ? j + i : j + i - letters.length
+        const x = spaces ? y - spaces : y
+        const s = `span style="color:${COLS[x]}"`
+        str += `<${s}>${letters[j]}</span>`
+      }
+    }
+    TXT.innerHTML = str
+    i++
+  }, 200)
+}
+
 
 function endSequence (name) {
   // reset text before starting next sequence
@@ -102,3 +134,34 @@ function killAll () {
   TXT.style.color = OFF
   TXT.innerHTML = 'Joe van Bo'
 }
+
+
+/* ARCHIVE:
+accidental chunk rainbow: 
+function rainbow () {
+  const letters = TXT.innerHTML
+  tickers.push('rainbower')
+  let i = letters.length
+  window.rainbower = setInterval(() => {
+    if(i === 0) {
+      endSequence('rainbower')
+      return
+    }
+    let str = ''
+    let spaces = 0
+    for(let j = 0; j < letters.length; j++) {
+      if(letters[j] === ' ') {
+        str+= ' '
+        spaces++
+      } else {
+        const y = i - letters.length
+        const x = spaces ? y - spaces : y
+        const s = `span style="color:${COLS[x]}"`
+        str += `<${s}>${letters[j]}</span>`
+      }
+    }
+    TXT.innerHTML = str
+    i++
+  }, 200)
+
+ */
