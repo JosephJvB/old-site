@@ -88,14 +88,15 @@ function chunk (COL = YELLOW) {
   }, DELAY)
 }
 
-function rainbow () {
+function rainbow (limit = 2) {
   const letters = TXT.innerHTML
   tickers.push('rainbower')
+  // control the flow
   let offset = 0
   let cycle = 0
   window.rainbower = setInterval(() => {
-    if(offset === 9) {
-      if(cycle === 2) {
+    if(offset === 8) {
+      if(cycle === limit) {
         endSequence('rainbower')
         return
       } else {
@@ -103,11 +104,13 @@ function rainbow () {
         cycle++
       }
     }
+    // arrange next colour set based on offset
     let nextCols = []
     for(let i = 0; i < COLS.length; i++) {
       const n = i - offset < 0 ? COLS.length + (i - offset) : i - offset
       nextCols.push(COLS[n])
     }
+    // apply next colour set to letters, dodge spaces
     let str = ''
     let spaces = 0
     for(let j = 0; j < letters.length; j++) {
