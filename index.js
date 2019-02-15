@@ -91,11 +91,16 @@ function chunk (COL = YELLOW) {
 function rainbow () {
   const letters = TXT.innerHTML
   tickers.push('rainbower')
-  let i = 0
+  let offset = 0
   window.rainbower = setInterval(() => {
-    if(i === 19) {
+    if(offset === 16) {
       endSequence('rainbower')
       return
+    }
+    let nextCols = []
+    for(let i = 0; i < COLS.length; i++) {
+      const n = i - offset < 0 ? COLS.length + (i - offset) : i - offset
+      nextCols.push(COLS[n])
     }
     let str = ''
     let spaces = 0
@@ -103,15 +108,12 @@ function rainbow () {
       if(letters[j] === ' ') {
         str+= ' '
         spaces++
-      } else {
-        const y = j + i < letters.length ? j + i : j + i - letters.length
-        const x = spaces ? y - spaces : y
-        const s = `span style="color:${COLS[x]}"`
-        str += `<${s}>${letters[j]}</span>`
       }
+      const s = `span style="color:${nextCols[j - spaces]}"`
+      str+= `<${s}>${letters[j]}</span>`
     }
     TXT.innerHTML = str
-    i++
+    offset++
   }, 200)
 }
 
