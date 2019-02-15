@@ -35,3 +35,23 @@
 - journal pages using github api [here](https://developer.github.com/v3/repos/contents/)
   - will have to do work to parse journals markdown
 - Lennie made a good point that including photos would be good. (also include small videos!)
+
+- let the user control what the patterns are? that would be cool
+
+### sign sequence pattern
+- start effect (always the same, always yellow)
+- generate a random sequence of effects & colours
+    - maybe each 'effect' lasts for the same time
+    - or each effect has a 'duration' associated
+- after start sequence, clear int and start new interval
+- call first effect with first colour
+- call second effect w/ 2nd colour
+- call 3rd effect w/ 3rd colour
+- end effect: letters stay lit with random colour: random letter flicker at random interval
+
+- start effect = colours light up one by one a dull yellow, then second wave of brighter yellow & increase glow
+
+- effect1: blink on and off
+- effect2: 'joe'>'van'>'bo x 2
+- effect3: one coloured letter go forward and back
+- effect4: all letters colour scramble
