@@ -4,11 +4,11 @@
 
 const TXT = document.querySelector('div[id=main]>h1');
 const RED = '#d40000'
-const ORANGE = '#d46600'
-const YELLOW = 'goldenrod'
+const ORANGE = '#fa7427'
+const YELLOW = '#e2cc05'
 const GREEN = '#32d400'
 const BLUE = '#3CF6F6'
-const PURPLE = '#6d00d4'
+const PURPLE = '#b9008b'
 const PINK = '#f442bc'
 const WHITE = 'white'
 const OFF = 'rgb(59, 61, 66)'

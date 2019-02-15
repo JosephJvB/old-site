@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+*::selection {
+  background-color: transparent;
+}
+
 html, body {
   background-color: rgb(47, 49, 54);
   /* font-family: Droid Sans Mono !important; */
