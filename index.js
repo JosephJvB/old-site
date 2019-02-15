@@ -2,59 +2,67 @@
 // function name = name
 // function interval = name + 'er'
 
-// todo: random letter flicker effect
-// set delay and colours as constants here
 
+// consts
 const TXT = document.querySelector('div[id=main]>h1');
+const YELLOW = 'goldenrod'
+const PINK = '#f442bc'
+const BLUE = '#3CF6F6'
+const OFF = 'rgb(59, 61, 66)'
+const DELAY = 600
+const COLS = [YELLOW, PINK, BLUE]
 
 let tickers = []
 
 TXT.addEventListener('click', () => {
-  if(window.blinker) {
-    clearInterval(window.blinker)
-    window.blinker = 0
-    tickers = tickers.filter(t => t !== 'blink')
+  if(tickers.length) {
+    killAll()
+    TXT.innerHTML = 'Joe van Bo'
     TXT.style.color = 'black'
   } else {
-    blink()
+    // start again random colour
+    const r = Math.floor(COLS.length * Math.random())
+    blink(cols[r])
   }
 })
 
-function blink () {
+function blink (COL = PINK) {
     let i = 0
-    TXT.style.color = '#f442bc'
+    TXT.style.color = COL
     window.blinker = setInterval(() => {
-      TXT.style.color = i % 2 ? '#f442bc' : 'rgb(59, 61, 66)'
+      TXT.style.color = i % 2 ? COL : OFF
       i++
-    }, 900)
-    tickers.push('blink')
+    }, DELAY + 300)
+    tickers.push('blinker')
 }
 
-function wave () {
-  // do I ever need this check??
-  if(window.waver) return clearInterval(window.waver)
+function wave (COL = YELLOW) {
   let letters = TXT.innerHTML
   let i = 0
+  tickers.push('waver')
   window.waver = setInterval(() => {
     if(i === letters.length) {
-      clearInterval(window.waver)
-      window.waver = 0
+      endSequence('waver')
       TXT.innerHTML = 'Joe van Bo'
-      setTimeout(() => TXT.style.color = 'goldenrod', 600)
-      setTimeout(() => TXT.style.color = 'rgb(59, 61, 66)', 1800)
-      setTimeout(blink, 2400)
+      setTimeout(() => TXT.style.color = COL, DELAY)
+      setTimeout(() => TXT.style.color = OFF, DELAY * 3)
+      setTimeout(() => blink(COL), DELAY * 4)
       return
     }
     if(letters[i] === ' ') i++
-    TXT.innerHTML = `${letters.substring(i-i, i)}<span style="color:goldenrod;">${letters.substring(i, i+1)}</span>${letters.substring(i+1, letters.length)}`
+    TXT.innerHTML = `${letters.substring(i-i, i)}<span style="color:${COL};">${letters.substring(i, i+1)}</span>${letters.substring(i+1, letters.length)}`
     i++
-  }, 600)
+  }, DELAY)
 }
 
 
-// maybe change to a kill interval by name thing
-function killIntervals () {
-  // kill all tickers
+function endSequence (name) {
+  clearInterval(window[name])
+  window[name] = 0
+  tickers = tickers.filter(t => t !== name)
+}
+
+function killAll () {
   tickers.forEach(t => {
     clearInterval(window[t])
     window[t] = 0
