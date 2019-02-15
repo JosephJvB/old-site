@@ -7,13 +7,13 @@ const RED = '#d40000'
 const ORANGE = '#fa7427'
 const YELLOW = '#e2cc05'
 const GREEN = '#32d400'
-const BLUE = '#3CF6F6'
-const PURPLE = '#b9008b'
+const TEAL = '#1cf8c1'
+const BLUE = '#3e2be7'
+const PURPLE = '#9b00a0'
 const PINK = '#f442bc'
-const WHITE = 'white'
 const OFF = 'rgb(59, 61, 66)'
 const DELAY = 600
-const COLS = [RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK, WHITE]
+const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
 
 let tickers = []
 
@@ -92,10 +92,16 @@ function rainbow () {
   const letters = TXT.innerHTML
   tickers.push('rainbower')
   let offset = 0
+  let cycle = 0
   window.rainbower = setInterval(() => {
-    if(offset === 16) {
-      endSequence('rainbower')
-      return
+    if(offset === 9) {
+      if(cycle === 2) {
+        endSequence('rainbower')
+        return
+      } else {
+        offset = 0
+        cycle++
+      }
     }
     let nextCols = []
     for(let i = 0; i < COLS.length; i++) {
@@ -116,6 +122,21 @@ function rainbow () {
     offset++
   }, 200)
 }
+
+// function static () {
+//   const letters = TXT.innerHTML
+//   let str = ''
+//   let spaces = 0
+//   for(let j = 0; j < letters.length; j++) {
+//     if(letters[j] === ' ') {
+//       str+= ' '
+//       spaces++
+//     }
+//     const s = `span style="color:${COLS[j - spaces]}"`
+//     str+= `<${s}>${letters[j]}</span>`
+//   }
+//   TXT.innerHTML = str
+// }
 
 
 function endSequence (name) {
@@ -140,13 +161,14 @@ function killAll () {
 
 /* ARCHIVE:
 accidental chunk rainbow: 
-function rainbow () {
+*/
+function rainbowChunk () {
   const letters = TXT.innerHTML
-  tickers.push('rainbower')
+  tickers.push('rainbowChunker')
   let i = letters.length
-  window.rainbower = setInterval(() => {
-    if(i === 0) {
-      endSequence('rainbower')
+  window.rainbowChunker = setInterval(() => {
+    if(i === 20) {
+      endSequence('rainbowChunker')
       return
     }
     let str = ''
@@ -165,5 +187,4 @@ function rainbow () {
     TXT.innerHTML = str
     i++
   }, 200)
-
- */
+}
