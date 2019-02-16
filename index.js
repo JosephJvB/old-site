@@ -2,7 +2,9 @@
 // function name = name
 // function interval = name + 'er'
 
-const TXT = document.querySelector('div[id=main]>h1');
+const MAIN = document.getElementById('main')
+const TXT = document.querySelector('div[id=main]>h1')
+const LETTERS = 'Joe van Bo'
 const RED = '#d40000'
 const ORANGE = '#fa7427'
 const YELLOW = '#e2cc05'
@@ -16,50 +18,132 @@ const DELAY = 600
 const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
 
 let tickers = []
+let savedRainbow;
 
-TXT.addEventListener('click', () => {
-  console.log('lcick', tickers)
-  if(tickers.length) {
-    // stop
-    killAll()
+MAIN.addEventListener('click', () => {
+  if(tickers.find(t => t === 'rainbower')) {
+    // freeze rainbow in place
+    endSequence('rainbower')
   } else {
-    // start again random colour
-    const r = Math.floor(COLS.length * Math.random())
-    wave(COLS[r])
+    // if frozen, restart
+    rainbow(savedRainbow)
   }
 })
 
-function blink (COL = PINK) {
-    let i = 0
-    TXT.style.color = COL
-    tickers.push('blinker')
-    window.blinker = setInterval(() => {
-      if(i === 2) {
-        endSequence('blinker')
-        chunk(COL)
+MAIN.addEventListener('dblclick', () => {
+  killAll()
+})
+
+function rainbow (saved, limit) {
+  let roygbiv = saved || COLS
+  tickers.push('rainbower')
+  // control the flow
+  let offset = 0
+  let cycle = 0
+  window.rainbower = setInterval(() => {
+    if(offset === 8) {
+      if(limit && cycle === limit) { // rainbow forever unless given a limit
+        endSequence('rainbower')
         return
+      } else {
+        offset = 0
+        cycle++
       }
-      TXT.style.color = i % 2 ? COL : OFF
-      i++
-    }, DELAY + 300)
-}
-
-function wave (COL = YELLOW) {
-  let letters = TXT.innerHTML
-  let i = 0
-  tickers.push('waver')
-  window.waver = setInterval(() => {
-    if(i > letters.length) {
-      endSequence('waver')
-      blink(COL)
-      return  
     }
-    if(letters[i] === ' ') i++
-    TXT.innerHTML = `${letters.substring(i-i, i)}<span style="color:${COL};">${letters.substring(i, i+1)}</span>${letters.substring(i+1, letters.length)}`
-    i++
-  }, DELAY / 4)
+    // arrange next colour set based on offset
+    let nextCols = []
+    for(let i = 0; i < roygbiv.length; i++) {
+      const n = i - offset < 0 ? roygbiv.length + (i - offset) : i - offset
+      nextCols.push(roygbiv[n])
+    }
+    savedRainbow = nextCols
+    // apply next colour set to letters, dodge spaces
+    let str = ''
+    let spaces = 0
+    for(let j = 0; j < LETTERS.length; j++) {
+      if(LETTERS[j] === ' ') {
+        str+= ' '
+        spaces++
+      }
+      const s = `span style="color:${nextCols[j - spaces]}"`
+      str+= `<${s}>${LETTERS[j]}</span>`
+    }
+    TXT.innerHTML = str
+    offset++
+  }, 200)
 }
 
+// colour each letter, then start the rainbow!
+function static () {
+  let str = ''
+  let spaces = 0
+  for(let j = 0; j < LETTERS.length; j++) {
+    if(LETTERS[j] === ' ') {
+      str+= ' '
+      spaces++
+    }
+    const s = `span style="color:${COLS[j - spaces]}"`
+    str+= `<${s}>${LETTERS[j]}</span>`
+  }
+  TXT.innerHTML = str
+  setTimeout(rainbow, 1000)
+}
+
+
+function endSequence (name) {
+  // clear intervals but dont reset text
+  clearInterval(window[name])
+  window[name] = 0
+  tickers = tickers.filter(t => t !== name)
+}
+
+function killAll () {
+  // reset colours and remove any spans
+  TXT.innerHTML = LETTERS
+  tickers.forEach(t => {
+    clearInterval(window[t])
+    window[t] = 0
+  })
+  tickers = []
+}
+
+/* ARCHIVE:
+accidental chunk rainbow:
+created in the process of chasing the rainbow 
+*/
+// accidental, not bad though
+function rainbowChunk () {
+  const letters = TXT.innerHTML
+  tickers.push('rainbowChunker')
+  let i = letters.length
+  window.rainbowChunker = setInterval(() => {
+    if(i === 20) {
+      endSequence('rainbowChunker')
+      return
+    }
+    let str = ''
+    let spaces = 0
+    for(let j = 0; j < letters.length; j++) {
+      if(letters[j] === ' ') {
+        str+= ' '
+        spaces++
+      } else {
+        const y = i - letters.length
+        const x = spaces ? y - spaces : y
+        const s = `span style="color:${COLS[x]}"`
+        str += `<${s}>${letters[j]}</span>`
+      }
+    }
+    TXT.innerHTML = str
+    i++
+  }, 200)
+}
+
+// below here were the hardy soldiers who brought us here today
+// thank you soldiers, lest we forget 🙇
+// let no prototype be forgotten, we may forget but version control will hold your memories forever
+
+// light joe -> van -> bo
 function chunk (COL = YELLOW) {
   let i = 0
   tickers.push('chunker')
@@ -88,106 +172,35 @@ function chunk (COL = YELLOW) {
   }, DELAY)
 }
 
-function rainbow (limit = 2) {
-  const letters = TXT.innerHTML
-  tickers.push('rainbower')
-  // control the flow
-  let offset = 0
-  let cycle = 0
-  window.rainbower = setInterval(() => {
-    if(offset === 8) {
-      if(cycle === limit) {
-        endSequence('rainbower')
-        return
-      } else {
-        offset = 0
-        cycle++
-      }
+// light colours one and time from start to end
+function wave (COL = YELLOW) {
+  let letters = TXT.innerHTML
+  let i = 0
+  tickers.push('waver')
+  window.waver = setInterval(() => {
+    if(i > letters.length) {
+      endSequence('waver')
+      blink(COL)
+      return  
     }
-    // arrange next colour set based on offset
-    let nextCols = []
-    for(let i = 0; i < COLS.length; i++) {
-      const n = i - offset < 0 ? COLS.length + (i - offset) : i - offset
-      nextCols.push(COLS[n])
-    }
-    // apply next colour set to letters, dodge spaces
-    let str = ''
-    let spaces = 0
-    for(let j = 0; j < letters.length; j++) {
-      if(letters[j] === ' ') {
-        str+= ' '
-        spaces++
-      }
-      const s = `span style="color:${nextCols[j - spaces]}"`
-      str+= `<${s}>${letters[j]}</span>`
-    }
-    TXT.innerHTML = str
-    offset++
-  }, 200)
+    if(letters[i] === ' ') i++
+    TXT.innerHTML = `${letters.substring(i-i, i)}<span style="color:${COL};">${letters.substring(i, i+1)}</span>${letters.substring(i+1, letters.length)}`
+    i++
+  }, DELAY / 4)
 }
 
-// function static () {
-//   const letters = TXT.innerHTML
-//   let str = ''
-//   let spaces = 0
-//   for(let j = 0; j < letters.length; j++) {
-//     if(letters[j] === ' ') {
-//       str+= ' '
-//       spaces++
-//     }
-//     const s = `span style="color:${COLS[j - spaces]}"`
-//     str+= `<${s}>${letters[j]}</span>`
-//   }
-//   TXT.innerHTML = str
-// }
-
-
-function endSequence (name) {
-  // reset text before starting next sequence
-  TXT.style.color = OFF
-  TXT.innerHTML = 'Joe van Bo'
-  clearInterval(window[name])
-  window[name] = 0
-  tickers = tickers.filter(t => t !== name)
-}
-
-function killAll () {
-  TXT.style.color = OFF
-  TXT.innerHTML = 'Joe van Bo'
-  tickers.forEach(t => {
-    clearInterval(window[t])
-    window[t] = 0
-  })
-  tickers = []
-}
-
-
-/* ARCHIVE:
-accidental chunk rainbow: 
-*/
-function rainbowChunk () {
-  const letters = TXT.innerHTML
-  tickers.push('rainbowChunker')
-  let i = letters.length
-  window.rainbowChunker = setInterval(() => {
-    if(i === 20) {
-      endSequence('rainbowChunker')
+// flash text diff colours
+function blink (COL = PINK) {
+  let i = 0
+  TXT.style.color = COL
+  tickers.push('blinker')
+  window.blinker = setInterval(() => {
+    if(i === 2) {
+      endSequence('blinker')
+      chunk(COL)
       return
     }
-    let str = ''
-    let spaces = 0
-    for(let j = 0; j < letters.length; j++) {
-      if(letters[j] === ' ') {
-        str+= ' '
-        spaces++
-      } else {
-        const y = i - letters.length
-        const x = spaces ? y - spaces : y
-        const s = `span style="color:${COLS[x]}"`
-        str += `<${s}>${letters[j]}</span>`
-      }
-    }
-    TXT.innerHTML = str
+    TXT.style.color = i % 2 ? COL : OFF
     i++
-  }, 200)
+  }, DELAY + 300)
 }
