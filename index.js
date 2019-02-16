@@ -49,10 +49,10 @@ function wave (COL = YELLOW) {
   let i = 0
   tickers.push('waver')
   window.waver = setInterval(() => {
-    if(i === letters.length) {
+    if(i > letters.length) {
       endSequence('waver')
       blink(COL)
-      return
+      return  
     }
     if(letters[i] === ' ') i++
     TXT.innerHTML = `${letters.substring(i-i, i)}<span style="color:${COL};">${letters.substring(i, i+1)}</span>${letters.substring(i+1, letters.length)}`
@@ -152,13 +152,13 @@ function endSequence (name) {
 }
 
 function killAll () {
+  TXT.style.color = OFF
+  TXT.innerHTML = 'Joe van Bo'
   tickers.forEach(t => {
     clearInterval(window[t])
     window[t] = 0
   })
   tickers = []
-  TXT.style.color = OFF
-  TXT.innerHTML = 'Joe van Bo'
 }
 
 

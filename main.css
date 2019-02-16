@@ -30,7 +30,8 @@ body {
   width: auto;
   margin: 0 auto;
   border: rgba(255, 255, 255, 0.493) solid 3px;
-  border-top: none;
+  border-right: rgba(255, 255, 255, 0.493) solid 6px;
+  border-left: rgba(255, 255, 255, 0.493) solid 6px;
 }
 
 #img-wrapper {
@@ -39,9 +40,8 @@ body {
   width: fit-content;
   max-width: -moz-fit-content;
   margin: 0 auto;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0.5rem 1.5rem 0.75rem 1.5rem;
   border: solid black 3px;
-  border-top: none;
 }
 
 #main {
