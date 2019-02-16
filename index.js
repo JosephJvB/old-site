@@ -64,9 +64,10 @@ function rainbow (saved, limit) {
       if(LETTERS[j] === ' ') {
         str+= ' '
         spaces++
+      } else {
+        const s = `span style="color:${nextCols[j - spaces]}"`
+        str+= `<${s}>${LETTERS[j]}</span>`
       }
-      const s = `span style="color:${nextCols[j - spaces]}"`
-      str+= `<${s}>${LETTERS[j]}</span>`
     }
     TXT.innerHTML = str
     offset++
