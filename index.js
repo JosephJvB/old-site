@@ -9,7 +9,7 @@ const RED = '#d40000'
 const ORANGE = '#fa7427'
 const YELLOW = '#e2cc05'
 const GREEN = '#32d400'
-const TEAL = '#1cf8c1'
+const TEAL = '#03d4a0'
 const BLUE = '#3e2be7'
 const PURPLE = '#9b00a0'
 const PINK = '#f442bc'
@@ -24,6 +24,7 @@ MAIN.addEventListener('click', () => {
   if(tickers.find(t => t === 'rainbower')) {
     // freeze rainbow in place
     endSequence('rainbower')
+    flicker()
   } else {
     // if frozen, restart
     rainbow(savedRainbow)
@@ -65,7 +66,7 @@ function rainbow (saved, limit) {
         str+= ' '
         spaces++
       } else {
-        const s = `span style="color:${nextCols[j - spaces]}"`
+        const s = `span id="letter-${j}" style="color:${nextCols[j - spaces]}"`
         str+= `<${s}>${LETTERS[j]}</span>`
       }
     }
@@ -83,11 +84,29 @@ function static () {
       str+= ' '
       spaces++
     }
-    const s = `span style="color:${COLS[j - spaces]}"`
+    const s = `span id="letter-${j}" style="color:${COLS[j - spaces]}"`
     str+= `<${s}>${LETTERS[j]}</span>`
   }
   TXT.innerHTML = str
-  setTimeout(rainbow, 1000)
+  flicker()
+  setTimeout(rainbow, 1800)
+}
+
+// cheap thrills
+function flicker () {
+  const idx = Math.floor(LETTERS.length * Math.random())
+  const letter = document.getElementById(`letter-${idx}`)
+  const init = letter.style.color
+  // could select a space, I guess 1 in 5 chance that you dont get a flicker is fun
+  // todo: randomise amount of timeouts and timeout delay too
+  if(letter) {
+    letter.style.color = OFF
+    setTimeout(() => letter.style.color = init, 100)
+    setTimeout(() => letter.style.color = OFF, 400)
+    setTimeout(() => letter.style.color = init, 520)
+    setTimeout(() => letter.style.color = OFF, 750)
+    setTimeout(() => letter.style.color = init, 1750)
+  }
 }
 
 
