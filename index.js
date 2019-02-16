@@ -13,7 +13,7 @@ const TEAL = '#1cf8c1'
 const BLUE = '#3e2be7'
 const PURPLE = '#9b00a0'
 const PINK = '#f442bc'
-const OFF = 'rgb(59, 61, 66)'
+const OFF = '#3b3d42'
 const DELAY = 600
 const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
 
@@ -71,7 +71,7 @@ function rainbow (saved, limit) {
     }
     TXT.innerHTML = str
     offset++
-  }, 200)
+  }, DELAY / 3)
 }
 
 // colour each letter, then start the rainbow!
@@ -91,6 +91,7 @@ function static () {
 }
 
 
+// belonged to an era where we were ending a few differenct sequences, rather than just rainbow
 function endSequence (name) {
   // clear intervals but dont reset text
   clearInterval(window[name])
@@ -99,7 +100,7 @@ function endSequence (name) {
 }
 
 function killAll () {
-  // reset colours and remove any spans
+  // reset text, no more coloured spans
   TXT.innerHTML = LETTERS
   tickers.forEach(t => {
     clearInterval(window[t])
@@ -140,10 +141,13 @@ function rainbowChunk () {
   }, 200)
 }
 
+/******************************************************************
 // below here were the hardy soldiers who brought us here today
 // thank you soldiers, lest we forget 🙇
 // let no prototype be forgotten, we may forget but version control will hold your memories forever
+*******************************************************************/
 
+/*
 // light joe -> van -> bo
 function chunk (COL = YELLOW) {
   let i = 0
@@ -205,3 +209,4 @@ function blink (COL = PINK) {
     i++
   }, DELAY + 300)
 }
+*/
