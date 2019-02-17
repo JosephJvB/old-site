@@ -16,26 +16,34 @@ const PINK = '#f442bc'
 const OFF = '#3b3d42'
 const DELAY = 600
 const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
+const PLAYPAUSE = document.getElementById('play/pause')
+const playClass = 'far fa-play-circle'
+const pauseClass = 'far fa-pause-circle'
+
 
 let tickers = []
 let savedRainbow;
 
-MAIN.addEventListener('click', () => {
+PLAYPAUSE.addEventListener('click', () => {
   if(tickers.find(t => t === 'rainbower')) {
     // freeze rainbow in place
+    PLAYPAUSE.className = playClass
     endSequence('rainbower')
     flicker()
   } else {
-    // if frozen, restart
     rainbow(savedRainbow)
   }
 })
 
+PLAYPAUSE.addEventListener('dblclick', () => {
+  killAll()
+})
 MAIN.addEventListener('dblclick', () => {
   killAll()
 })
 
 function rainbow (saved, limit) {
+  PLAYPAUSE.className = pauseClass
   let roygbiv = saved || COLS
   tickers.push('rainbower')
   // control the flow
@@ -96,10 +104,10 @@ function static () {
 function flicker () {
   const idx = Math.floor(LETTERS.length * Math.random())
   const letter = document.getElementById(`letter-${idx}`)
-  const init = letter.style.color
   // could select a space, I guess 1 in 5 chance that you dont get a flicker is fun
   // todo: randomise amount of timeouts and timeout delay too
   if(letter) {
+    const init = letter.style.color
     letter.style.color = OFF
     setTimeout(() => letter.style.color = init, 100)
     setTimeout(() => letter.style.color = OFF, 400)

@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 *::selection {
@@ -14,7 +15,8 @@
 }
 
 html, body {
-  background-color: rgb(47, 49, 54);
+  /* background-color: #2f3136; */
+  background-color: #252323;
   /* font-family: Droid Sans Mono !important; */
   /* font-family: white-outline; */
   width: 100%;
@@ -45,36 +47,56 @@ body {
 }
 
 #main {
-  margin-top: 20px;
   text-align: center;
   font-size: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 #main > h1 {
   font-family: white-outline;
   cursor: pointer;
   color: rgb(59, 61, 66);
+  margin: 0 4rem;
 }
 
-/* i[class^=fa] {
+#controls {
+  display:flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* all font awesome */
+i[class^=fa] {
+  justify-self: flex-end;
+  /* margin: auto 0; */
   border-radius: 3px;
   padding: 0.5rem;
-  border: 1px solid transparent;
+  color: #4c4f57;
+  font-size: 3rem;
 }
-
 i[class^=fa]:hover {
   cursor: pointer;
-  border: 1px solid black
 }
 
-.fa-envelope-square {
-  color: #8286c5;
+/* play pause */
+i[class$=fa-play-circle]:hover {
+  color: #008000;
+}
+i[class$=fa-pause-circle]:hover {
+  color: #b40000;
 }
 
-.fa-twitter-square {
+/* social meds */
+/* .fa-twitter-square:hover {
   color: #1B95E0;
 }
-
-.fa-linkedin {
+.fa-github:hover {
+  color: black;
+}
+.fa-envelope-square:hover {
+  color: #8286c5;
+}
+.fa-linkedin:hover {
   color: #1B95E0;
 } */
