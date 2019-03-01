@@ -16,34 +16,15 @@ const PINK = '#f442bc'
 const OFF = '#3b3d42'
 const DELAY = 600
 const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
-const PLAYPAUSE = document.getElementById('play/pause')
-const playClass = 'far fa-play-circle'
-const pauseClass = 'far fa-pause-circle'
-
 
 let tickers = []
 let savedRainbow;
-
-PLAYPAUSE.addEventListener('click', () => {
-  if(tickers.find(t => t === 'rainbower')) {
-    // freeze rainbow in place
-    PLAYPAUSE.className = playClass
-    endSequence('rainbower')
-    flicker()
-  } else {
-    rainbow(savedRainbow)
-  }
-})
-
-PLAYPAUSE.addEventListener('dblclick', () => {
-  killAll()
-})
+ß
 MAIN.addEventListener('dblclick', () => {
   killAll()
 })
 
 function rainbow (saved, limit) {
-  PLAYPAUSE.className = pauseClass
   let roygbiv = saved || COLS
   tickers.push('rainbower')
   // control the flow

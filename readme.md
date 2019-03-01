@@ -1,5 +1,13 @@
 # I wanna make the fun website
 
+Im gonna move this domain from joevanbio.icu  
+Domains I have:
+- joevanbio.icu
+- joevanbo.icu
+- joevanbo.site
+
+Let's use .site for now until I do some kind of rebuild on digital ocean with a proper front end and that. (maybe preact for lightness, maybe react for hooks, maybe Vuejs since it's my fav atm)
+
 ### PURPOSE??
 - WHY am I making this website?
   - to learn how to make a website to be web guy man
