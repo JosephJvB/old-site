@@ -42,6 +42,6 @@ Let's use .site for now until I do some kind of rebuild on digital ocean with a 
     - do custom domains for free: https://help.github.com/articles/using-a-custom-domain-with-github-pages/
 
 - SERVER HOSTING:
-  - [x] `digital ocean droplet:` [love you brad](https://www.youtube.com/watch?v=RE2PLyFqCzE)\
+  - [x] `digital ocean droplet:` [love you brad](https://www.youtube.com/watch?v=RE2PLyFqCzE)
     - can request droplet server at some random IP address, need some dns record so I can send a request to api.joevanbio.icu
 

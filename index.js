@@ -19,7 +19,7 @@ const COLS = [RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PURPLE, PINK]
 
 let tickers = []
 let savedRainbow;
-ß
+
 MAIN.addEventListener('dblclick', () => {
   killAll()
 })
